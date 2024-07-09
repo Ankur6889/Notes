@@ -108,12 +108,28 @@ so the crux of this is that in order to use cout we need to include the header f
     }
 ```
 
-# Compount Assignments are faster than normal operations 
-which means sum = sum + a , will be slower than sum += a   
-some of the examples of compount assignment operators are 
-* +=
-* *= 
-* -= and so on 
+# Compount Assignments 
+Compound assignment operators in C++ combine an arithmetic or bitwise operation with an assignment. They provide a shorthand way to update the value of a variable.
+| Operator | Description            | Example      | Equivalent to     |
+|----------|------------------------|--------------|-------------------|
+| `+=`     | Addition Assignment    | `x += 3;`    | `x = x + 3;`      |
+| `-=`     | Subtraction Assignment | `x -= 2;`    | `x = x - 2;`      |
+| `*=`     | Multiplication Assignment | `x *= 2;` | `x = x * 2;`      |
+| `/=`     | Division Assignment    | `x /= 2;`    | `x = x / 2;`      |
+| `%=`     | Modulus Assignment     | `x %= 3;`    | `x = x % 3;`      |
+| `&=`     | Bitwise AND Assignment | `x &= 3;`    | `x = x & 3;`      |
+| `|=`     | Bitwise OR Assignment  | `x |= 3;`    | `x = x \| 3;`     |
+| `^=`     | Bitwise XOR Assignment | `x ^= 3;`    | `x = x ^ 3;`      |
+| `<<=`    | Left Shift Assignment  | `x <<= 1;`   | `x = x << 1;`     |
+| `>>=`    | Right Shift Assignment | `x >>= 1;`   | `x = x >> 1;`     |
+
+### Summary 
+* Compound operators improve readability and conciseness.
+* They do not provide performance benefits.
+* Modern compilers optimize the code, so both compound assignments and their equivalent separate operations result in the same performance.  
+
+Thus, while compound assignment operators are useful for writing clearer and more maintainable code, they do not inherently make the code run faster.
+
 ---
 # Increment and Decrement operators 
 1. Pre Increment (++x) and Post Increment (x++)
@@ -287,3 +303,245 @@ int main() {
 }
 ```
 ---
+# Typedef in C++ 
+In C++, typedef is used to create an alias for an existing type. This can make code more readable and easier to manage, especially when dealing with complex types.
+
+Here's a simple example to explain how typedef works:
+```cpp
+#include <iostream>
+
+// Define a new name 'Distance' for the type 'double'
+typedef double Distance;
+
+// Function to calculate the area of a rectangle
+Distance calculateArea(Distance width, Distance height) {
+    return width * height;
+}
+
+int main() {
+    Distance width = 5.0;
+    Distance height = 10.0;
+    Distance area = calculateArea(width, height);
+
+    std::cout << "Area: " << area << std::endl;
+
+    return 0;
+}
+```
+### Explanation 
+* In this example, typedef double Distance; creates a new name Distance for the type double.
+* This means you can now use Distance instead of double in your code.
+* It doesn't change how the code works; it just makes it more readable and easier to understand.  
+
+By using typedef, you can give more meaningful names to types, which can make complex code easier to understand. For example, using Distance instead of double immediately tells you that the variable is related to a measurement of distance.
+
+---
+# Conditionals ( if-else block) in C++ 
+
+### `if-else` Statement 
+
+```cpp 
+if (condition) {
+    // Code to execute if condition is true
+} else {
+    // Code to execute if condition is false
+}
+```
+### `Nested if-else` Statement 
+```cpp 
+if (condition1) {
+    // Code to execute if condition1 is true
+    if (condition2) {
+        // Code to execute if condition1 and condition2 are true
+    } else {
+        // Code to execute if condition1 is true and condition2 is false
+    }
+} else {
+    // Code to execute if condition1 is false
+    if (condition3) {
+        // Code to execute if condition1 is false and condition3 is true
+    } else {
+        // Code to execute if condition1 and condition3 are false
+    }
+}
+```
+### `Single statement after if`
+```cpp
+if (condition)
+    single_statement;
+```
+### `Single statement if-else`
+```cpp
+if (condition)
+    single_statement_if_true;
+else
+    single_statement_if_false;
+```
+
+### `else-if ladder`
+```cpp
+if (condition1) {
+    // Code to execute if condition1 is true
+} else if (condition2) {
+    // Code to execute if condition2 is true
+} else if (condition3) {
+    // Code to execute if condition3 is true
+} else {
+    // Code to execute if none of the above conditions are true
+}
+```
+
+---
+# Logical Operators in C++
+Logical operators are used to perform logical operations on one or more operands. In C++, there are three primary logical operators: && (logical AND), || (logical OR), and ! (logical NOT). These operators are used to combine or invert boolean expressions.
+
+* `&&` (Logical AND): Returns true if both operands are true.
+* `||` (Logical OR): Returns true if at least one of the operands is true.
+* `!` (Logical NOT): Returns true if the operand is false and vice versa.
+
+### Example showing compound conditional statements in use
+```cpp 
+#include <iostream>
+
+int main() {
+    int age;
+    bool hasPermission;
+
+    std::cout << "Enter your age: ";
+    std::cin >> age;
+    std::cout << "Do you have permission? (1 for yes, 0 for no): ";
+    std::cin >> hasPermission;
+
+    if ((age > 18 && age < 65) || hasPermission) {
+        std::cout << "You are allowed to enter." << std::endl;
+    } else {
+        std::cout << "You are not allowed to enter." << std::endl;
+    }
+
+    return 0;
+}
+```
+---
+# Switch Case in C++
+The switch statement in C++ is a control structure that allows you to execute one block of code from multiple options based on the value of an expression. It is often used as an alternative to a series of if-else statements when you have multiple potential values for a single variable and want to execute different code for each value.
+
+### Syntax
+```cpp
+switch (expression) {
+    case constant1:
+        // Code to execute if expression == constant1
+        break;
+    case constant2:
+        // Code to execute if expression == constant2
+        break;
+    // You can have any number of case statements
+    default:
+        // Code to execute if none of the cases match
+}
+```
+### Example usage 
+```cpp 
+#include <iostream>
+
+int main() {
+    int day;
+
+    std::cout << "Enter a number (1-7) to get the day of the week: ";
+    std::cin >> day;
+
+    switch (day) {
+        case 1:
+            std::cout << "Monday" << std::endl;
+            break;
+        case 2:
+            std::cout << "Tuesday" << std::endl;
+            break;
+        case 3:
+            std::cout << "Wednesday" << std::endl;
+            break;
+        case 4:
+            std::cout << "Thursday" << std::endl;
+            break;
+        case 5:
+            std::cout << "Friday" << std::endl;
+            break;
+        case 6:
+            std::cout << "Saturday" << std::endl;
+            break;
+        case 7:
+            std::cout << "Sunday" << std::endl;
+            break;
+        default:
+            std::cout << "Invalid number! Please enter a number between 1 and 7." << std::endl;
+    }
+
+    return 0;
+}
+```
+### Important Points
+* `Break Statement`: The break statement is crucial. Without it, the program continues to execute the subsequent cases (fall-through behavior), which is usually not desired.
+* `Default Case`: While optional, it’s good practice to include a default case to handle unexpected values.
+* `Case Constants`: The values for case must be constant expressions and of the same data type as the switch expression.  
+
+Using switch statements can make your code more readable and efficient when dealing with multiple potential values for a single variable.
+
+---
+# While & Do-While Loop in C++ 
+
+## While loop 
+The while loop continues to execute a block of code as long as the specified condition is true. The condition is evaluated before the execution of the loop body.
+
+### Syntax 
+```cpp
+while (condition) {
+    // Code to execute while the condition is true
+}
+```
+### Example 
+```cpp
+#include <iostream>
+
+int main() {
+    int count = 1;
+
+    while (count <= 5) {
+        std::cout << "Count is: " << count << std::endl;
+        count++;
+    }
+
+    return 0;
+}
+```
+## Do-While Loop 
+The do-while loop is similar to the while loop, but the condition is evaluated after the execution of the loop body. This guarantees that the loop body is executed at least once, even if the condition is false initially.
+
+### Syntax 
+```cpp 
+do {
+    // Code to execute at least once, and then while the condition is true
+} while (condition);
+```
+
+### Example 
+```cpp
+#include <iostream>
+
+int main() {
+    int count = 1;
+
+    do {
+        std::cout << "Count is: " << count << std::endl;
+        count++;
+    } while (count <= 5);
+
+    return 0;
+}
+```
+## Differences Between While and Do-While Loops
+1. `Condition Check Timing:`  
+
+    * `While Loop`: The condition is checked before the loop body executes. If the condition is false initially, the loop body does not execute at all.
+    * `Do-While Loop`: The condition is checked after the loop body executes. This guarantees that the loop body executes at least once, regardless of the condition.
+2. `Usage`:
+    * `While Loop`: Use when you want to execute the loop body zero or more times, depending on the initial condition.
+    * `Do-While Loop`: Use when you want to execute the loop body at least once and then continue based on the condition.
